@@ -1,4 +1,4 @@
-from cred import GetCredentials
+from cred import getCredentials
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -62,8 +62,8 @@ if __name__ == "__main__":
     home_page = homePage(browser)
 
     login_page = home_page.go_to_login_page()
-    login_page.login(GetCredentials.get_username(),
-                     GetCredentials.get_password())
+    login_page.login(getCredentials.get_username(),
+                     getCredentials.get_password())
 
     search = searchBox(browser)
     search.search_for_key('#bmwf80')
