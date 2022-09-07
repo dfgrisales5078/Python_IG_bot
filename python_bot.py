@@ -1,5 +1,7 @@
+from cred import GetCredentials
 from time import sleep
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
 
 class LoginPage:
@@ -40,6 +42,17 @@ class searchBox:
         search_input = browser.find_element(
             "css selector", "input[placeholder='Search']")
         search_input.send_keys(search_key)
+        search_input.send_keys(Keys.ENTER)
+
+
+# class="_ac7v _aang"
+class searchResults:
+    def __init__(self, browser):
+        self.browser = browser
+
+    def click_on_first_post(self):
+        post = browser.find_element(
+            "css selector", "a[role='link']").click()
 
 
 if __name__ == "__main__":
@@ -48,13 +61,17 @@ if __name__ == "__main__":
 
     home_page = homePage(browser)
 
-    # code
     login_page = home_page.go_to_login_page()
-    login_page.login("jeffbezos2023", "8,%w&sWT.87(-)h")
-    # endcode
+    login_page.login(GetCredentials.get_username(),
+                     GetCredentials.get_password())
 
     search = searchBox(browser)
     search.search_for_key('#bmwf80')
+    sleep(1)
+    search.search_for_key(Keys.ENTER)
 
-    sleep(340)
+    post = searchResults(browser)
+    post.click_on_first_post()
+
+    sleep(360)
     browser.close()
