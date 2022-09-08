@@ -45,15 +45,22 @@ class searchBox:
         search_input.send_keys(Keys.ENTER)
 
 
-# class="_ac7v _aang"
-class searchResults:
+class followAccount:
     def __init__(self, browser):
         self.browser = browser
 
-    def click_on_first_post(self):
-        post = browser.find_element(
-            "css selector", "a[role='link']").click()
+    def follow_user(self):
+        self.browser.find_element(
+            "xpath", "//div['follow']").click()
 
+
+# class searchResults:
+#     def __init__(self, browser):
+#         self.browser = browser
+
+#     def click_on_first_post(self):
+#         post = browser.find_element(
+#             "css selector", "a[role='link']").click()
 
 if __name__ == "__main__":
     browser = webdriver.Firefox()
@@ -66,12 +73,16 @@ if __name__ == "__main__":
                      getCredentials.get_password())
 
     search = searchBox(browser)
-    search.search_for_key('#bmwf80')
+    search.search_for_key('diegofgg7')
     sleep(1)
     search.search_for_key(Keys.ENTER)
+    sleep(2)
 
-    post = searchResults(browser)
-    post.click_on_first_post()
+    follow = followAccount(browser)
+    follow.follow_user()
 
-    sleep(360)
+    # post = searchResults(browser)
+    # post.click_on_first_post()
+
+    sleep(480)
     browser.close()
