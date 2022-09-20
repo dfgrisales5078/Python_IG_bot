@@ -2,6 +2,7 @@ from cred import getCredentials
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
 
 
 class LoginPage:
@@ -23,13 +24,13 @@ class LoginPage:
         sleep(5)
 
 
-class homePage:
+class HomePage:
     def __init__(self, browser):
         self.browser = browser
         self.browser.get('https://www.instagram.com/')
 
     def go_to_login_page(self):
-        self.browser.find_element("xpath", "//div['Log in']").click()
+        browser.find_element("xpath", "//div['Log in']").click()
         sleep(2)
         return LoginPage(self.browser)
 
@@ -45,28 +46,32 @@ class searchBox:
         search_input.send_keys(Keys.ENTER)
 
 
-class followAccount:
+class InteractWithAcount:
     def __init__(self, browser):
         self.browser = browser
 
     def follow_user(self):
-        self.browser.find_element(
-            "xpath", "//div['follow']").click()
+        browser.find_element(
+            "xpath", "//div['Follow']").click()
+        # browser.find_element(
+        #     By.CLASS_NAME, "_aacl _aaco _aacw _aad6 _aade").click()
 
+    def like_posts(self, amount=2):
+        browser.find_element(By.CLASS_NAME, "_aagw").click()
 
-# class searchResults:
-#     def __init__(self, browser):
-#         self.browser = browser
+        counter = 1
+        while counter <= amount:
+            sleep(2)
+            browser.find_element("xpath", "//svg[@aria-label='Like']").click()
+            browser.find_element("xpath", "//svg[@aria-label='Next']").click()
+            counter += 1
 
-#     def click_on_first_post(self):
-#         post = browser.find_element(
-#             "css selector", "a[role='link']").click()
 
 if __name__ == "__main__":
     browser = webdriver.Firefox()
     browser.implicitly_wait(5)
 
-    home_page = homePage(browser)
+    home_page = HomePage(browser)
 
     login_page = home_page.go_to_login_page()
     login_page.login(getCredentials.get_username(),
@@ -74,15 +79,22 @@ if __name__ == "__main__":
 
     search = searchBox(browser)
     search.search_for_key('diegofgg7')
-    sleep(1)
+    sleep(3)
     search.search_for_key(Keys.ENTER)
     sleep(2)
 
-    follow = followAccount(browser)
-    follow.follow_user()
+    interaction = InteractWithAcount(browser)
+    interaction.follow_user()
 
-    # post = searchResults(browser)
-    # post.click_on_first_post()
+    sleep(15)
 
-    sleep(480)
-    browser.close()
+    interaction.like_posts()
+
+    browser.get('https://www.instagram.com/')
+
+    # sleep(480)
+    # browser.close()
+
+
+# like button --- class="_abl-" --- class="_aamw"
+# next post ---- class="_abl-" ---- class=" _aaqg _aaqh"
