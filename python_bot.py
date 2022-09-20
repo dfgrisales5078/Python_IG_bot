@@ -62,7 +62,9 @@ class InteractWithAcount:
         counter = 1
         while counter <= amount:
             sleep(2)
-            browser.find_element("xpath", "//svg[@aria-label='Like']").click()
+            like_button = browser.find_element(By.CLASS_NAME, "_ab6-")
+            browser.execute_script("arguments[0].click();", like_button)
+
             browser.find_element("xpath", "//svg[@aria-label='Next']").click()
             counter += 1
 
@@ -78,15 +80,15 @@ if __name__ == "__main__":
                      getCredentials.get_password())
 
     search = searchBox(browser)
-    search.search_for_key('diegofgg7')
+    search.search_for_key('ragy_cdj')
     sleep(3)
     search.search_for_key(Keys.ENTER)
     sleep(2)
 
     interaction = InteractWithAcount(browser)
-    interaction.follow_user()
+    # interaction.follow_user()
 
-    sleep(15)
+    # sleep(15)
 
     interaction.like_posts()
 
