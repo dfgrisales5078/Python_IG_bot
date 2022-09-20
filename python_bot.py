@@ -38,21 +38,20 @@ class Bot:
 
         browser.find_element(
             By.XPATH, follow_button_path).click()
-        # browser.find_element(
-        #     By.CLASS_NAME, "_aacl _aaco _aacw _aad6 _aade").click()
 
-    def like_posts(self, amount=2) -> None:
+    def like_posts(self, amount=11) -> None:
         # find & click on first post
         browser.find_element(By.CLASS_NAME, "_aagw").click()
 
         counter = 1
+        # iterate and like posts
         while counter <= amount:
             sleep(2)
-            # TODO like post
+            # like post
             like_button_path = "/html/body/div[1]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/button"
             browser.find_element(By.XPATH, like_button_path).click()
-
-            # TODO click on next
+            sleep(1)
+            # click on next
             next_button_path = "/html/body/div[1]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"
             browser.find_element(By.XPATH, next_button_path).click()
             counter += 1
@@ -66,7 +65,7 @@ if __name__ == "__main__":
     bot = Bot(browser)
     bot.login()
 
-    bot.search_for_key('ragy_cdj')
+    bot.search_for_key('diegofgg7')
     sleep(3)
     bot.search_for_key(Keys.ENTER)
     sleep(2)
