@@ -34,7 +34,7 @@ class Bot:
         search_input.send_keys(Keys.ENTER)
 
     def follow_user(self) -> None:
-        follow_button_path = "/html/body/div[1]/div/div/div/div[1]/div/div/div/div[1]/section/main/div/header/section/div[1]/div[1]/div/div[2]/button"
+        follow_button_path = "/html/body/div[1]/div/div/div/div[1]/div/div/div/div[1]/section/main/div/header/section/div[1]/div[1]/div/div[1]/button"
 
         browser.find_element(
             By.XPATH, follow_button_path).click()
@@ -50,7 +50,7 @@ class Bot:
             # like post
             like_button_path = "/html/body/div[1]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/article/div/div[2]/div/div/div[2]/section[1]/span[1]/button"
             browser.find_element(By.XPATH, like_button_path).click()
-            sleep(1)
+
             # click on next
             next_button_path = "/html/body/div[1]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[1]/div/div/div/button"
             browser.find_element(By.XPATH, next_button_path).click()
@@ -72,7 +72,6 @@ if __name__ == "__main__":
 
     try:
         bot.follow_user()
-        sleep(2)
     except:
         print('error following user')
 
