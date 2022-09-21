@@ -1,4 +1,4 @@
-from cred import getCredentials
+from cred import GetCredentials
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -11,11 +11,11 @@ class Bot:
     def __init__(self, browser) -> None:
         self.browser = browser
 
-    def login(self, username=getCredentials.get_username(), password=getCredentials.get_password()):
+    def login(self, username=GetCredentials.get_username(), password=GetCredentials.get_password()):
         # find username & password input elements
-        username_input = browser.find_element(
+        username_input = self.browser.find_element(
             "css selector", "input[name='username']")
-        password_input = browser.find_element(
+        password_input = self.browser.find_element(
             "css selector", "input[name='password']")
         sleep(3)
 
@@ -23,14 +23,14 @@ class Bot:
         password_input.send_keys(password)
 
         # find & click on log in button
-        login_button = browser.find_element(
+        login_button = self.browser.find_element(
             "xpath", "//button[@type='submit']")
         login_button.click()
 
     def search_for_key(self, search_key) -> None:
         sleep(2)
         try:
-            search_input = browser.find_element(
+            search_input = self.browser.find_element(
                 "css selector", "input[placeholder='Search']")
             search_input.send_keys(search_key)
             search_input.send_keys(Keys.ENTER)
@@ -41,14 +41,14 @@ class Bot:
         try:
             sleep(3)
             follow_button_path = "._ab9- > div:nth-child(1)"
-            browser.find_element(
+            self.browser.find_element(
                 By.CSS_SELECTOR, follow_button_path).click()
         except:
             print('Error: could not follow this account.')
 
     def like_posts(self, amount=15) -> None:
         # find & click on first post
-        browser.find_element(By.CLASS_NAME, "_aagw").click()
+        self.browser.find_element(By.CLASS_NAME, "_aagw").click()
         counter = 0
 
         # iterate and like posts
@@ -57,11 +57,13 @@ class Bot:
                 sleep(2)
                 # like post
                 like_button_path = "._aamw > button:nth-child(1)"
-                browser.find_element(By.CSS_SELECTOR, like_button_path).click()
+                self.browser.find_element(
+                    By.CSS_SELECTOR, like_button_path).click()
 
                 # click on next
                 next_button_path = "._aaqg > button:nth-child(1) > div:nth-child(1) > span:nth-child(1) > svg:nth-child(1)"
-                browser.find_element(By.CSS_SELECTOR, next_button_path).click()
+                self.browser.find_element(
+                    By.CSS_SELECTOR, next_button_path).click()
                 counter += 1
             except:
                 counter += 1
@@ -70,15 +72,16 @@ class Bot:
 
             # like last post
             like_button_path = "._aamw > button:nth-child(1)"
-            browser.find_element(By.CSS_SELECTOR, like_button_path).click()
+            self.browser.find_element(
+                By.CSS_SELECTOR, like_button_path).click()
 
 
 if __name__ == "__main__":
-    browser = webdriver.Firefox()
-    browser.get('https://www.instagram.com/')
-    browser.implicitly_wait(5)
+    fire_fox = webdriver.Firefox()
+    fire_fox.get('https://www.instagram.com/')
+    fire_fox.implicitly_wait(5)
 
-    bot = Bot(browser)
+    bot = Bot(fire_fox)
     bot.login()
 
     bot.search_for_key('diegofgg7')
