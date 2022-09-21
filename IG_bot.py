@@ -29,38 +29,48 @@ class Bot:
 
     def search_for_key(self, search_key) -> None:
         sleep(2)
-        search_input = browser.find_element(
-            "css selector", "input[placeholder='Search']")
-        search_input.send_keys(search_key)
-        search_input.send_keys(Keys.ENTER)
+        try:
+            search_input = browser.find_element(
+                "css selector", "input[placeholder='Search']")
+            search_input.send_keys(search_key)
+            search_input.send_keys(Keys.ENTER)
+        except:
+            print('Error: could not search this account.')
 
     def follow_user(self) -> None:
-        sleep(3)
-        follow_button_path = "._ab9- > div:nth-child(1)"
+        try:
+            sleep(3)
+            follow_button_path = "._ab9- > div:nth-child(1)"
+            browser.find_element(
+                By.CSS_SELECTOR, follow_button_path).click()
+        except:
+            print('Error: could not follow this account.')
 
-        # private
-        # "._abb3 > div:nth-child(1) > div:nth-child(2) > button:nth-child(1)"
-        # "div._ab9o:nth-child(1) > button:nth-child(1)"
-
-        browser.find_element(
-            By.CSS_SELECTOR, follow_button_path).click()
-
-    def like_posts(self, amount=50) -> None:
+    def like_posts(self, amount=15) -> None:
         # find & click on first post
         browser.find_element(By.CLASS_NAME, "_aagw").click()
-
         counter = 0
+
         # iterate and like posts
         while counter <= amount:
-            sleep(2)
-            # like post
+            try:
+                sleep(2)
+                # like post
+                like_button_path = "._aamw > button:nth-child(1)"
+                browser.find_element(By.CSS_SELECTOR, like_button_path).click()
+
+                # click on next
+                next_button_path = "._aaqg > button:nth-child(1) > div:nth-child(1) > span:nth-child(1) > svg:nth-child(1)"
+                browser.find_element(By.CSS_SELECTOR, next_button_path).click()
+                counter += 1
+            except:
+                counter += 1
+                print('Error: could not like one or more posts.')
+                continue
+
+            # like last post
             like_button_path = "._aamw > button:nth-child(1)"
             browser.find_element(By.CSS_SELECTOR, like_button_path).click()
-
-            # click on next
-            next_button_path = "._aaqg > button:nth-child(1) > div:nth-child(1) > span:nth-child(1) > svg:nth-child(1)"
-            browser.find_element(By.CSS_SELECTOR, next_button_path).click()
-            counter += 1
 
 
 if __name__ == "__main__":
@@ -71,15 +81,12 @@ if __name__ == "__main__":
     bot = Bot(browser)
     bot.login()
 
-    bot.search_for_key('mark zuckerberg')
+    bot.search_for_key('diegofgg7')
     sleep(3)
     bot.search_for_key(Keys.ENTER)
     sleep(2)
 
-    try:
-        bot.follow_user()
-    except:
-        print('error following user')
+    bot.follow_user()
 
     sleep(2)
     bot.like_posts()
