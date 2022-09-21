@@ -75,7 +75,7 @@ class Bot:
                 continue
 
         # like last post
-        sleep(1)
-        like_button_path = "._aamw > button:nth-child(1)"
-        self.browser.find_element(
-            By.CSS_SELECTOR, like_button_path).click()
+        # sleep(1)
+        # like_button_path = "._aamw > button:nth-child(1)"
+        # self.browser.find_element(
+        #     By.CSS_SELECTOR, like_button_path).click()
