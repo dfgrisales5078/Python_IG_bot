@@ -28,20 +28,24 @@ class Bot:
         login_button.click()
 
     def search_for_key(self, search_key) -> None:
+        sleep(2)
         search_input = browser.find_element(
             "css selector", "input[placeholder='Search']")
         search_input.send_keys(search_key)
         search_input.send_keys(Keys.ENTER)
 
     def follow_user(self) -> None:
-        follow_button_path = "._abb3 > div:nth-child(1) > div:nth-child(2) > button:nth-child(1)"
-        # html/body/div[1]/div/div/div/div[1]/div/div/div/div[1]/section/main/div/header/section/div[1]/div[1]/div/div[2]/button
-        # ._abb3 > div:nth-child(1) > div:nth-child(2) > button:nth-child(1)
+        sleep(3)
+        follow_button_path = "._ab9- > div:nth-child(1)"
+
+        # private
+        # "._abb3 > div:nth-child(1) > div:nth-child(2) > button:nth-child(1)"
+        # "div._ab9o:nth-child(1) > button:nth-child(1)"
 
         browser.find_element(
             By.CSS_SELECTOR, follow_button_path).click()
 
-    def like_posts(self, amount=2) -> None:
+    def like_posts(self, amount=4) -> None:
         # find & click on first post
         browser.find_element(By.CLASS_NAME, "_aagw").click()
 
@@ -50,7 +54,6 @@ class Bot:
         while counter <= amount:
             sleep(2)
             # like post
-            #like_button_path = "._aaqg > button:nth-child(1) > div:nth-child(1) > span:nth-child(1) > svg:nth-child(1)"
             like_button_path = "._aamw > button:nth-child(1)"
             browser.find_element(By.CSS_SELECTOR, like_button_path).click()
 
@@ -68,7 +71,7 @@ if __name__ == "__main__":
     bot = Bot(browser)
     bot.login()
 
-    bot.search_for_key('diegofgg7')
+    bot.search_for_key('ragy_cdj')
     sleep(3)
     bot.search_for_key(Keys.ENTER)
     sleep(2)
