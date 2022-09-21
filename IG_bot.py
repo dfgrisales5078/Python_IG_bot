@@ -45,7 +45,7 @@ class Bot:
         browser.find_element(
             By.CSS_SELECTOR, follow_button_path).click()
 
-    def like_posts(self, amount=4) -> None:
+    def like_posts(self, amount=50) -> None:
         # find & click on first post
         browser.find_element(By.CLASS_NAME, "_aagw").click()
 
@@ -71,7 +71,7 @@ if __name__ == "__main__":
     bot = Bot(browser)
     bot.login()
 
-    bot.search_for_key('ragy_cdj')
+    bot.search_for_key('mark zuckerberg')
     sleep(3)
     bot.search_for_key(Keys.ENTER)
     sleep(2)
