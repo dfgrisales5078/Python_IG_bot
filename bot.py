@@ -37,12 +37,11 @@ class Bot:
         except:
             print('Error: could not search this account.')
 
-        sleep(2)
+        sleep(1)
 
     def follow_user(self) -> None:
         sleep(2)
         try:
-            sleep(3)
             follow_button_path = "._ab9- > div:nth-child(1)"
             self.browser.find_element(
                 By.CSS_SELECTOR, follow_button_path).click()
@@ -74,8 +73,36 @@ class Bot:
                 print('Error: could not like one or more posts.')
                 continue
 
-        # like last post
-        # sleep(1)
-        # like_button_path = "._aamw > button:nth-child(1)"
-        # self.browser.find_element(
-        #     By.CSS_SELECTOR, like_button_path).click()
+
+if __name__ == "__main__":
+    fire_fox = webdriver.Firefox()
+    fire_fox.get('https://www.instagram.com/')
+    fire_fox.implicitly_wait(5)
+    bot = Bot(fire_fox)
+
+    # interact with first account
+    bot.login()
+    bot.search_for_user('dapple')
+    bot.search_for_user(Keys.ENTER)
+    # bot.follow_user()
+    bot.like_posts(10)
+    sleep(3)
+
+    # interact with second account
+    fire_fox.get('https://www.instagram.com/')
+    fire_fox.implicitly_wait(5)
+    bot.search_for_user('dachshund')
+    bot.search_for_user(Keys.ENTER)
+    # bot.follow_user()
+    bot.like_posts(10)
+    sleep(2)
+
+    # interact with hashtag
+    # fire_fox.get('https://www.instagram.com/')
+    # fire_fox.implicitly_wait(5)
+    # bot.search_for_user('#f80')
+    # bot.search_for_user(Keys.ENTER)
+    # bot.like_posts(4)
+
+    # sleep(480)
+    # fire_fox.close()
