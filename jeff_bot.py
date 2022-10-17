@@ -11,25 +11,36 @@ class Bot:
 
     def login(self, username=GetCredentials.get_username(), password=GetCredentials.get_password()):
         # find username & password input elements
+        username_path = 'div.-MzZI:nth-child(1) > div:nth-child(1) > label:nth-child(1) > input:nth-child(2)'
         username_input = self.browser.find_element(
-            "css selector", "input[name='username']")
+            By.CSS_SELECTOR, username_path)
+
+        password_path = 'div.-MzZI:nth-child(2) > div:nth-child(1) > label:nth-child(1) > input:nth-child(2)'
         password_input = self.browser.find_element(
-            "css selector", "input[name='password']")
+            By.CSS_SELECTOR, password_path)
         sleep(3)
 
         username_input.send_keys(username)
         password_input.send_keys(password)
 
         # find & click on log in button
+        login_path = '.L3NKy > div:nth-child(1)'
         login_button = self.browser.find_element(
-            "xpath", "//button[@type='submit']")
+            By.CSS_SELECTOR, login_path)
         login_button.click()
 
     def search_for_user(self, user_name) -> None:
-        sleep(2)
+        sleep(1)
+        search_button_path = 'div.x1iyjqo2 > div:nth-child(2) > div:nth-child(1) > a:nth-child(1) > div:nth-child(1)'
+        login_button = self.browser.find_element(
+            By.CSS_SELECTOR, search_button_path)
+        login_button.click()
+        sleep(1)
+
         try:
+            search_input_path = '._aauy'
             search_input = self.browser.find_element(
-                "css selector", "input[placeholder='Search']")
+                By.CSS_SELECTOR, search_input_path)
             search_input.send_keys(user_name)
             search_input.send_keys(Keys.ENTER)
         except:
@@ -40,7 +51,7 @@ class Bot:
     def follow_user(self) -> None:
         sleep(2)
         try:
-            follow_button_path = "._ab9- > div:nth-child(1)"
+            follow_button_path = 'div._ab9k:nth-child(3) > div:nth-child(1) > div:nth-child(2) > button:nth-child(1)'
             self.browser.find_element(
                 By.CSS_SELECTOR, follow_button_path).click()
         except:
@@ -49,9 +60,10 @@ class Bot:
     def like_posts(self, posts_to_like=0) -> None:
         sleep(2)
         # find & click on first post
-        self.browser.find_element(By.CLASS_NAME, "_aagw").click()
-        counter = 0
+        first_post_path = 'div._ac7v:nth-child(1) > div:nth-child(1) > a:nth-child(1)'
+        self.browser.find_element(By.CSS_SELECTOR, first_post_path).click()
 
+        counter = 0
         # iterate and like posts
         while counter < posts_to_like:
             sleep(2)
@@ -62,7 +74,7 @@ class Bot:
                     By.CSS_SELECTOR, like_button_path).click()
 
                 # click on next
-                next_button_path = "._aaqg > button:nth-child(1) > div:nth-child(1) > span:nth-child(1) > svg:nth-child(1)"
+                next_button_path = "._aaqg > button:nth-child(1)"
                 self.browser.find_element(
                     By.CSS_SELECTOR, next_button_path).click()
                 counter += 1
@@ -80,20 +92,20 @@ if __name__ == "__main__":
 
     # interact with first account
     bot.login()
-    bot.search_for_user('mark zuckerberg')
-    bot.search_for_user(Keys.ENTER)
-    bot.follow_user()
-    bot.like_posts(5)
-    sleep(3)
-
-    # interact with second account
-    fire_fox.get('https://www.instagram.com/')
-    fire_fox.implicitly_wait(5)
-    bot.search_for_user('Jeff Bezos')
+    bot.search_for_user('apple')
     bot.search_for_user(Keys.ENTER)
     # bot.follow_user()
     bot.like_posts(10)
-    sleep(2)
+    sleep(3)
+
+    # interact with second account
+    # fire_fox.get('https://www.instagram.com/')
+    # fire_fox.implicitly_wait(5)
+    # bot.search_for_user('dachshund')
+    # bot.search_for_user(Keys.ENTER)
+    # # bot.follow_user()
+    # bot.like_posts(10)
+    # sleep(2)
 
     # interact with hashtag
     # fire_fox.get('https://www.instagram.com/')
