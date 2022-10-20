@@ -72,28 +72,28 @@ class Bot:
                 continue
 
 
-if __name__ == "__main__":
-    fire_fox = webdriver.Firefox()
-    fire_fox.get('https://www.instagram.com/')
-    fire_fox.implicitly_wait(5)
-    bot = Bot(fire_fox)
+# if __name__ == "__main__":
+#     fire_fox = webdriver.Firefox()
+#     fire_fox.get('https://www.instagram.com/')
+#     fire_fox.implicitly_wait(5)
+#     bot = Bot(fire_fox)
 
-    # interact with first account
-    bot.login()
-    bot.search_for_user('mark zuckerberg')
-    bot.search_for_user(Keys.ENTER)
-    bot.follow_user()
-    bot.like_posts(5)
-    sleep(3)
+#     # interact with first account
+#     bot.login()
+#     bot.search_for_user('mark zuckerberg')
+#     bot.search_for_user(Keys.ENTER)
+#     bot.follow_user()
+#     bot.like_posts(5)
+#     sleep(3)
 
-    # interact with second account
-    fire_fox.get('https://www.instagram.com/')
-    fire_fox.implicitly_wait(5)
-    bot.search_for_user('Jeff Bezos')
-    bot.search_for_user(Keys.ENTER)
-    # bot.follow_user()
-    bot.like_posts(10)
-    sleep(2)
+#     # interact with second account
+#     fire_fox.get('https://www.instagram.com/')
+#     fire_fox.implicitly_wait(5)
+#     bot.search_for_user('Jeff Bezos')
+#     bot.search_for_user(Keys.ENTER)
+#     # bot.follow_user()
+#     bot.like_posts(10)
+#     sleep(2)
 
     # interact with hashtag
     # fire_fox.get('https://www.instagram.com/')
