@@ -1,6 +1,3 @@
-# changes for 'jeffbezos' account
-
-
 from cred import GetCredentials
 from time import sleep
 from selenium import webdriver
