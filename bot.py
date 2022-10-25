@@ -37,15 +37,15 @@ class Bot:
         # try to search for username
         try:
             # find search input and enter username information
+            search_input_path = '._aauy'
             search_input = self.browser.find_element(
-                "css selector", "input[placeholder='Search']")
+                By.CSS_SELECTOR, search_input_path)
             search_input.send_keys(user_name)
             search_input.send_keys(Keys.ENTER)
 
-        # if username cannot be searched for, print error message and quit
+        # if username cannot be searched for print error message
         except:
             print('Error: could not search this account.')
-            exit(1)
         sleep(1)
 
     def follow_user(self) -> None:
