@@ -25,7 +25,7 @@ def get_likes():
     posts = int(posts)
     follow = request.form['follow']
 
-    # initialize browser and make headless so it runs without opening firefox
+    # initialize browser make 'headless'
     options = webdriver.FirefoxOptions()
     options.headless = False
     fire_fox = webdriver.Firefox(options=options)
