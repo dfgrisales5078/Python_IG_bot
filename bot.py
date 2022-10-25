@@ -12,37 +12,48 @@ class Bot:
     def login(self, username=GetCredentials.get_username(), password=GetCredentials.get_password()):
         # find username & password input elements
         username_input = self.browser.find_element(
-            "css selector", "input[name='username']")
+            By.CSS_SELECTOR, "input[name='username']")
         password_input = self.browser.find_element(
-            "css selector", "input[name='password']")
+            By.CSS_SELECTOR, "input[name='password']")
         sleep(3)
 
+        # type in credentials to username and password input
         username_input.send_keys(username)
         password_input.send_keys(password)
 
         # find & click on log in button
         login_button = self.browser.find_element(
-            "xpath", "//button[@type='submit']")
+            By.XPATH, "//button[@type='submit']")
         login_button.click()
 
     def search_for_user(self, user_name) -> None:
         sleep(2)
+
+        # try to search for username
         try:
+            # find search input and enter username information
             search_input = self.browser.find_element(
                 "css selector", "input[placeholder='Search']")
             search_input.send_keys(user_name)
             search_input.send_keys(Keys.ENTER)
+
+        # if username cannot be searched for, print error message and quit
         except:
             print('Error: could not search this account.')
-
+            exit(1)
         sleep(1)
 
     def follow_user(self) -> None:
         sleep(2)
+
+        # try to follow user
         try:
+            # search for follow button and click on it if found
             follow_button_path = "._ab9- > div:nth-child(1)"
             self.browser.find_element(
                 By.CSS_SELECTOR, follow_button_path).click()
+
+        # print error message if account cannot be followed
         except:
             print('Error: could not follow this account.')
 
@@ -52,55 +63,25 @@ class Bot:
         self.browser.find_element(By.CLASS_NAME, "_aagw").click()
         counter = 0
 
-        # iterate and like posts
+        # iterate and like posts while posts_to like > counter
         while counter < posts_to_like:
             sleep(2)
+
+            # try to search for the first post, like it and go to next post
             try:
                 # like post
                 like_button_path = "._aamw > button:nth-child(1)"
                 self.browser.find_element(
                     By.CSS_SELECTOR, like_button_path).click()
 
-                # click on next
+                # click on next button to go to next post
                 next_button_path = "._aaqg > button:nth-child(1) > div:nth-child(1) > span:nth-child(1) > svg:nth-child(1)"
                 self.browser.find_element(
                     By.CSS_SELECTOR, next_button_path).click()
                 counter += 1
+
+            # if a post cannot be found, print error message
             except:
                 counter += 1
                 print('Error: could not like one or more posts.')
                 continue
-
-
-# if __name__ == "__main__":
-#     fire_fox = webdriver.Firefox()
-#     fire_fox.get('https://www.instagram.com/')
-#     fire_fox.implicitly_wait(5)
-#     bot = Bot(fire_fox)
-
-#     # interact with first account
-#     bot.login()
-#     bot.search_for_user('mark zuckerberg')
-#     bot.search_for_user(Keys.ENTER)
-#     bot.follow_user()
-#     bot.like_posts(5)
-#     sleep(3)
-
-#     # interact with second account
-#     fire_fox.get('https://www.instagram.com/')
-#     fire_fox.implicitly_wait(5)
-#     bot.search_for_user('Jeff Bezos')
-#     bot.search_for_user(Keys.ENTER)
-#     # bot.follow_user()
-#     bot.like_posts(10)
-#     sleep(2)
-
-    # interact with hashtag
-    # fire_fox.get('https://www.instagram.com/')
-    # fire_fox.implicitly_wait(5)
-    # bot.search_for_user('#f80')
-    # bot.search_for_user(Keys.ENTER)
-    # bot.like_posts(4)
-
-    # sleep(480)
-    # fire_fox.close()
