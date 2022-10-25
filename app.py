@@ -1,6 +1,7 @@
 # Diego Grisales & Ragy Costa De Jesus
-# CNT - 4104 Project (Backend)
-
+# CNT - 4104 Project
+# Flask API endpoint
+# Fall 2022
 
 from bot import Bot
 from flask import Flask, request, redirect, jsonify

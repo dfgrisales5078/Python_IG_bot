@@ -1,3 +1,8 @@
+# Diego Grisales & Ragy Costa De Jesus
+# CNT - 4104 Project (Backend)
+# Python/Selenium code for the Instagram bot
+# Fall 2022
+
 from cred import GetCredentials
 from time import sleep
 from selenium import webdriver
