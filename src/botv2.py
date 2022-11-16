@@ -1,5 +1,5 @@
 # Diego Grisales & Ragy Costa De Jesus
-# CNT - 4104 Project (Backend)
+# CNT - 4104 Project (Api endpoint)
 # Python/Selenium code for the Instagram bot
 # Fall 2022
 
