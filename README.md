@@ -1,7 +1,7 @@
 
 # Python/Flask API Endpoint
 
-## API endpoint used to work along with Get Instagram Likes website. 
+# API endpoint used to work along with Get Instagram Likes website (Repository linked below). 
 
 Currently, API is not deployed and therefore must be ran locally in order for it to interact with the POST request sent by the Instagram Likes Website (https://main.d1s1ozkoy4xkk0.amplifyapp.com/). The web page is currently deployed using AWS Amplify. 
 
