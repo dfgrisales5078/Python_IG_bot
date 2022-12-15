@@ -3,7 +3,7 @@
 
 # API endpoint used to work along with Get Instagram Likes website (Repository linked below). 
 
-Currently, API is not deployed and therefore must be ran locally in order for it to interact with the POST request sent by the Instagram Likes Website (https://main.d1s1ozkoy4xkk0.amplifyapp.com/). The web page is currently deployed using AWS Amplify. 
+Currently, API is not deployed and therefore must be ran locally in order for it to interact with the POST request sent by the Instagram Likes Website. 
 
 Flask endpoint get_likes() function in app.py uses code from class Bot to interact with intagram accounts based on the parameters sent on the POST method. Parameters passed are: username (instagram account to interact with), posts (number of posts to like on the account), and follow (determines is account should be followed as well.)
 
