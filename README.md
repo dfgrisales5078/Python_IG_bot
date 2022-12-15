@@ -1,7 +1,7 @@
 
 # Python/Flask API Endpoint
 
-# API endpoint used to work along with Get Instagram Likes website (Repository linked below). 
+## API endpoint used to work along with Get Instagram Likes website (Repository linked below). 
 
 Currently, API endpoint and website are not deployed and therefore both must be ran locally.
 
