@@ -8,7 +8,7 @@ from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-
+import undetected_chromedriver as uc
 
 class Botv2:
     def __init__(self, browser) -> None:
@@ -110,14 +110,14 @@ class Botv2:
 if __name__ == "__main__":
 
     # initialize browser make 'headless'
-    options = webdriver.FirefoxOptions()
+    options = uc.ChromeOptions()
     options.headless = False
-    fire_fox = webdriver.Firefox(options=options)
+    driver = uc.Chrome(use_subprocess=True, options=options)
 
     # go to instagram.com & login
-    fire_fox.get('https://www.instagram.com/')
-    fire_fox.implicitly_wait(5)
-    bot = Botv2(fire_fox)
+    driver.get('https://www.instagram.com/')
+    driver.implicitly_wait(5)
+    bot = Botv2(driver)
     bot.login()
 
     # interact with account based on parameters passed
